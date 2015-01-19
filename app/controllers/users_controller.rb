@@ -2,27 +2,26 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    head 404, 'Content-Type' => 'application/json'
+    head 403, 'Content-Type' => 'application/json'
   end
 
   # GET /users/new
   def new
-    head 404, 'Content-Type' => 'application/json'
-  end
-
-  # POST /users
-  def create
-
+    head 403, 'Content-Type' => 'application/json'
   end
 
   # GET /users/:id
   def show
-    head 404, 'Content-Type' => 'application/json'
+    head 403, 'Content-Type' => 'application/json'
   end
 
   # GET /users/:id/edit
   def edit
-    head 404, 'Content-Type' => 'application/json'
+    head 403, 'Content-Type' => 'application/json'
+  end
+
+  # POST /users
+  def create
   end
 
   # PUT /users/:id
@@ -32,6 +31,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/id
   def destroy
+
+  end
+
+  # GET /users/verify
+  def verify
 
   end
 end
