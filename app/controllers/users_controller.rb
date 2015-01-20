@@ -22,6 +22,14 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    user = User.create(user_create_params)
+
+    if user.errors.any?
+      render json: user.errors.messages, status: :conflict
+    else
+      user.send_verification_token
+      render json: user, status: :created
+    end
   end
 
   # PUT /users/:id
@@ -37,5 +45,11 @@ class UsersController < ApplicationController
   # GET /users/verify
   def verify
 
+  end
+
+  private
+
+  def user_create_params
+    params.require(:user).permit(:email, :public_key, :encrypted_private_key)
   end
 end
