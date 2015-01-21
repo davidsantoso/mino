@@ -22,13 +22,13 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    user = User.create(user_create_params)
+    @user = User.create(user_create_params)
 
-    if user.errors.any?
-      render json: user.errors.messages, status: :conflict
+    if @user.errors.any?
+      render json: @user.errors.messages, status: :conflict
     else
-      user.send_verification_token
-      render json: user, status: :created
+      @user.send_verification_token
+      render json: @user, status: :created
     end
   end
 

@@ -10,6 +10,5 @@ class User < ActiveRecord::Base
   end
 
   def send_verification_token
-    puts "Send email verification token via Mandrill"
   end
 end
