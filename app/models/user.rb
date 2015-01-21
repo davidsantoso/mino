@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :public_key, :encrypted_private_key
 
   before_save :setup_email_verification
+  after_save :send_verification_token
 
   def setup_email_verification
     self.verified = false

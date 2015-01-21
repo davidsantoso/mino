@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     if @user.errors.any?
       render json: @user.errors.messages, status: :conflict
     else
-      @user.send_verification_token
       render json: @user, status: :created
     end
   end
