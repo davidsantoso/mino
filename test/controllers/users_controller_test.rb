@@ -27,16 +27,34 @@ class UsersControllerTest < ActionController::TestCase
     end
     user = assigns(:user)
 
-    assert_response :success
     assert_empty user.errors
+    assert_response :success
   end
 
   test "should return email already taken" do
     post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb=="}
     user = assigns(:user)
 
-    assert_response :conflict
     assert_not user.valid?
     assert_equal [:email], user.errors.keys
+    assert_response :conflict
+  end
+
+  test "should return public key already taken" do
+    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb=="}
+    user = assigns(:user)
+
+    assert_not user.valid?
+    assert_equal [:public_key], user.errors.keys
+    assert_response :conflict
+  end
+
+  test "should return encrypted private key already taken" do
+    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb=="}
+    user = assigns(:user)
+
+    assert_not user.valid?
+    assert_equal [:encrypted_private_key], user.errors.keys
+    assert_response :conflict
   end
 end
