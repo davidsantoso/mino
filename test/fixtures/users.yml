@@ -7,7 +7,7 @@
 one:
   email: rick.grimes@mail.com
   email_verification_token: ""
-  verified: false
+  verified: null
   public_key: MIIBIjANBgk
   encrypted_private_key: NmIIFHzBJBb==
   password_verification_token: ""
