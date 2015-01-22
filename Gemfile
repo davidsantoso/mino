@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development do
   gem 'byebug'
   gem 'spring'
+  gem 'awesome_print'
+  gem 'pry-rails'
 end
 
 group :test do
