@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     if @user.errors.any?
       render json: @user.errors.messages, status: :conflict
     else
-      render json: @user, status: :created
+      render :show, status: :created
     end
   end
 
