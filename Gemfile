@@ -20,5 +20,6 @@ end
 
 group :test do
   gem 'shoulda'
+  gem "codeclimate-test-reporter", require: nil
 end
 
