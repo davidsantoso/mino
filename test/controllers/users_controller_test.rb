@@ -1,6 +1,13 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
+
+  setup do
+    @request.headers["Accept"] = "application/json"
+    @request.headers["Content-Type"] = "application/json"
+    @controller = UsersController.new
+  end
+
   test "index should return 403" do
     get :index
     assert_response :forbidden
