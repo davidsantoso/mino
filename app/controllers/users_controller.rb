@@ -2,22 +2,22 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    head 403, 'Content-Type' => 'application/json'
+    head :forbidden, 'Content-Type' => 'application/json'
   end
 
   # GET /users/new
   def new
-    head 403, 'Content-Type' => 'application/json'
+    head :forbidden, 'Content-Type' => 'application/json'
   end
 
   # GET /users/:id
   def show
-    head 403, 'Content-Type' => 'application/json'
+    head :forbidden, 'Content-Type' => 'application/json'
   end
 
   # GET /users/:id/edit
   def edit
-    head 403, 'Content-Type' => 'application/json'
+    head :forbidden, 'Content-Type' => 'application/json'
   end
 
   # POST /users
