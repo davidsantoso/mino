@@ -13,3 +13,4 @@
 /tmp
 
 # Ignore .env development file
+.env
