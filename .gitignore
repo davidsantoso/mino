@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore .env development file
