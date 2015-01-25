@@ -64,4 +64,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal [:encrypted_private_key], user.errors.keys
     assert_response :conflict
   end
+
+  test "should send email address verification email" do
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb=="}
+    end
+    email_address_verification_email = ActionMailer::Base.deliveries.last
+
+    assert_equal "Verify your mino account", email_address_verification_email.subject
+    assert_equal 'maggie.greene@mail.com', email_address_verification_email.to[0]
+  end
 end
