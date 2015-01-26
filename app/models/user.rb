@@ -11,6 +11,6 @@ class User < ActiveRecord::Base
   end
 
   def send_verification_token
-    UserMailer.verify_email_address(self.email, self.email_verification_token).deliver_now
+    UserMailer.verify_email_address(self.email, self.email_verification_token).deliver_later
   end
 end
