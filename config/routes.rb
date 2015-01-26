@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/verify-email' => 'users#verify_email'
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

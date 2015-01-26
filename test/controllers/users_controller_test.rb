@@ -82,4 +82,35 @@ class UsersControllerTest < ActionController::TestCase
   #   assert_equal "Verify your mino account", email_address_verification_email.subject
   #   assert_equal 'maggie.greene@mail.com', email_address_verification_email.to[0]
   # end
+
+  test "verify_email should return 403 without params" do
+    get :verify_email
+    assert_response :forbidden
+  end
+
+  test "verify_email should return 403 without email param" do
+    get :verify_email, {token: "nfAen2193nS"}
+    assert_response :forbidden
+  end
+
+  test "verify_email should return 403 without token param" do
+    get :verify_email, {email: "sasha@mail.com"}
+    assert_response :forbidden
+  end
+
+  test "verify_email should return 403 if token does not match" do
+    get :verify_email, {email: "sasha@mail.com", token: "the_incorrect_token"}
+    assert_response :forbidden
+  end
+
+  test "verify_email should render view" do
+    # setup sets these to application/json by default but we need to override for this test
+    @request.headers["Accept"] = "text/html"
+    @request.headers["Content-Type"] = "text/html"
+
+    get :verify_email, {email: "sasha@mail.com", token: "TH0s7wfHfzqFWTMB21pRgy9aTrMlDecFv"}
+
+    assert_response :ok
+    assert_template :verify_email
+  end
 end

@@ -41,9 +41,18 @@ class UsersController < ApplicationController
 
   end
 
-  # GET /users/verify
-  def verify
+  # GET /users/verify-email
+  def verify_email
+    if params[:email] && params[:token]
+      user = User.find_by_email(params[:email])
 
+      if user.email_verification_token == params[:token]
+        user.verified = true
+        user.save and return true
+      end
+    end
+
+    head :forbidden
   end
 
   private
