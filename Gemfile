@@ -11,7 +11,6 @@ gem 'sidekiq'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development do
   gem 'byebug'

@@ -53,9 +53,6 @@ GEM
     connection_pool (2.0.0)
     debugger-linecache (1.2.0)
     docile (1.1.5)
-    dotenv (1.0.2)
-    dotenv-rails (1.0.2)
-      dotenv (= 1.0.2)
     erubis (2.7.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
@@ -168,7 +165,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   codeclimate-test-reporter
-  dotenv-rails
   jbuilder (~> 2.0)
   pg
   pry-rails
