@@ -19,9 +19,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not_empty @user.email_verification_token
   end
 
-  test "should respond to send_verification_token" do
+  test "should respond to send_email_address_verification_token" do
     @user = users(:one)
-    assert_respond_to @user, :setup_email_verification
+    assert_respond_to @user, :send_email_address_verification_token
 
     # Should back fill test stubbing out email send
   end
