@@ -73,15 +73,16 @@ class UsersControllerTest < ActionController::TestCase
   #       In addition, this test should probably be refactored to test that the job to send the mailer does get enqueued. As of
   #       right now, it's a bit unclear on the best way to test this while using the ActionMailer and ActiveJob integration.
   #
-  # test "should send email address verification email" do
-  #   assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-  #     post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb=="}
-  #   end
-  #   email_address_verification_email = ActionMailer::Base.deliveries.last
-  #
-  #   assert_equal "Verify your mino account", email_address_verification_email.subject
-  #   assert_equal 'maggie.greene@mail.com', email_address_verification_email.to[0]
-  # end
+  test "should send email address verification email" do
+    skip "Need to figure out how to best test an after_commit callback"
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb=="}
+    end
+    email_address_verification_email = ActionMailer::Base.deliveries.last
+
+    assert_equal "Verify your mino account", email_address_verification_email.subject
+    assert_equal 'maggie.greene@mail.com', email_address_verification_email.to[0]
+  end
 
   test "verify_email should return 403 without params" do
     get :verify_email
