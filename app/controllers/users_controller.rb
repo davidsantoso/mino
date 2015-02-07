@@ -46,9 +46,8 @@ class UsersController < ApplicationController
     if params[:email] && params[:token]
       user = User.find_by_email(params[:email])
 
-      if user.email_verification_token == params[:token]
-        user.verified = true
-        user.save and return true
+      if user.email_address_verified?(params[:token])
+        return true
       end
     end
 

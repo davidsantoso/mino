@@ -5,7 +5,6 @@ class UsersControllerTest < ActionController::TestCase
   setup do
     @request.headers["Accept"] = "application/json"
     @request.headers["Content-Type"] = "application/json"
-    @controller = UsersController.new
   end
 
   test "index should return 403" do
@@ -104,8 +103,24 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :forbidden
   end
 
-  test "verify_email should render view" do
-    # setup sets these to application/json by default but we need to override for this test
+  test "verify_email should set user to verified true if token does match" do
+    # setup sets headers to application/json by default since it's normally
+    # just responding to API requests so we need to override for this test
+    @request.headers["Accept"] = "text/html"
+    @request.headers["Content-Type"] = "text/html"
+
+    get :verify_email, {email: "sasha@mail.com", token: "TH0s7wfHfzqFWTMB21pRgy9aTrMlDecFv"}
+
+    @user = users(:two)
+
+    assert_response :ok
+    assert_equal true, @user.verified
+    assert_template :verify_email
+  end
+
+  test "verify_email should render verify_email view if token does match" do
+    # setup sets headers to application/json by default since it's normally
+    # just responding to API requests so we need to override for this test
     @request.headers["Accept"] = "text/html"
     @request.headers["Content-Type"] = "text/html"
 

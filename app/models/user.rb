@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
   def send_email_address_verification_token
     UserMailer.verify_email_address(self.email, self.email_verification_token).deliver_later
   end
+
+  def email_address_verified?(token)
+    if self.email_verification_token == token
+      self.verified = true
+      self.save
+    end
+  end
 end

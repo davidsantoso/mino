@@ -22,7 +22,10 @@ class UserTest < ActiveSupport::TestCase
   test "should respond to send_email_address_verification_token" do
     @user = users(:one)
     assert_respond_to @user, :send_email_address_verification_token
+  end
 
-    # Should back fill test stubbing out email send
+  test "should respond to email_address_verified?" do
+    @user = users(:one)
+    assert_respond_to @user, :email_address_verified?
   end
 end
