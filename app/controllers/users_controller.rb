@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.create(user_create_params)
 
     if @user.errors.any?
-      render json: @user.errors.messages, status: :conflict
+      render json: { errors: @user.errors }, status: :conflict
     else
       render :show, status: :created
     end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   end
 
-  # DELETE /users/id
+  # DELETE /users/:id
   def destroy
 
   end
