@@ -25,3 +25,14 @@ two:
   session_token: ""
   # created_at: ""
   # updated_at: ""
+
+three:
+  email: beth.greene@mail.com
+  email_verification_token: nW0d6wdHfz8FWnMw22pRfyTazr6lDGc1v
+  verified: true
+  public_key: f38ned8DhqC
+  encrypted_private_key: HgdCAsE1s2==
+  password_verification_token: ""
+  session_token: ""
+  # created_at: ""
+  # updated_at: ""
