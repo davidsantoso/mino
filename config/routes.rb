@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'users/verify-email' => 'users#verify_email'
 
   resources :users
+  resources :authentications, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

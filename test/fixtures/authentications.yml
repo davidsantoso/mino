@@ -4,7 +4,10 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  message: 52c23fb73c39eaabc6592a6279e61e1a901df93c13d418dadcd3e135e5555675
+  token: e995599cea1a73787618613fc799d4c1e3b0de9820b57132b01771d8db42064c
+  expired: false
 # column: value
 #
 two: {}

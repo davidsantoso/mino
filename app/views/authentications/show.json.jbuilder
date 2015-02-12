@@ -1,0 +1,1 @@
+json.authentication @authentication, :message
