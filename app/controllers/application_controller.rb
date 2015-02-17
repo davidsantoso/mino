@@ -4,6 +4,20 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session, if: :json_request?
 
+  # GET /verification
+  def verification
+    if params[:email] && params[:token]
+      user = User.find_by_email(params[:email])
+
+      if user.email_address_verified?(params[:token])
+        render "users/verification"
+        return true
+      end
+    end
+
+    head :forbidden
+  end
+
   protected
 
   def json_request?

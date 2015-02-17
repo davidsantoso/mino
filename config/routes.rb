@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/verify-email' => 'users#verify_email'
+  get '/verification' => 'application#verification'
 
   post '/authentications' => 'authentications#create'
   patch '/authentications' => 'authentications#update'
