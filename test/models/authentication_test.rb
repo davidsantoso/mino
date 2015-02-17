@@ -15,4 +15,26 @@ class AuthenticationTest < ActiveSupport::TestCase
     @authentication = authentications(:one)
     assert_respond_to @authentication, :generate_challenge
   end
+
+  test "should respond to encrypted_challenge" do
+    @authentication = authentications(:one)
+    assert_respond_to @authentication, :encrypted_challenge
+  end
+
+  test "should respond to activate" do
+    @authentication = authentications(:one)
+    assert_respond_to @authentication, :activate
+  end
+
+  test "activate should set active to true" do
+    @authentication = authentications(:one)
+    @authentication.activate
+    assert_equal true, @authentication.active
+  end
+
+  test "activate should generate token" do
+    @authentication = authentications(:one)
+    @authentication.activate
+    assert_not_nil @authentication.token
+  end
 end

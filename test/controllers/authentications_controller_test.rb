@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'pry'
 
 class AuthenticationsControllerTest < ActionController::TestCase
 
@@ -9,7 +10,7 @@ class AuthenticationsControllerTest < ActionController::TestCase
 
   test "should create a new authentication" do
     assert_difference('Authentication.count') do
-      post :create, user: {email: "beth.greene@mail.com"}
+      post :create, user: { email: "beth.greene@mail.com" }
     end
 
     authentication = assigns(:authentication)
@@ -36,7 +37,21 @@ class AuthenticationsControllerTest < ActionController::TestCase
   # ¯\_(ツ)_/¯
   #
   test "should not create authentication if user is not verified" do
-    post :create, user: {email: "rick.grimes@mail.com"}
+    post :create, user: { email: "rick.grimes@mail.com" }
     assert_response :conflict
+  end
+
+  test "should return 403 if challenge is not decrypted" do
+    patch :update, authentication: { challenge: "the_incorrect_challenge" }
+    assert_response :forbidden
+  end
+
+  test "should activate authentication" do
+    patch :update, authentication: { challenge: "52c23fb73c39eaabc6592a6279e61e1a901df93c13d418dadcd3e135e5555675" }
+
+    authentication = assigns(:authentication)
+
+    assert session[:token], authentication.token
+    assert_response :ok
   end
 end
