@@ -16,6 +16,7 @@ class AuthenticationsControllerTest < ActionController::TestCase
     authentication = assigns(:authentication)
 
     assert_empty authentication.errors
+    assert_not_nil authentication.challenge
     assert_response :success
   end
 

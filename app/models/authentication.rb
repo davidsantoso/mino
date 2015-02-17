@@ -3,10 +3,9 @@ class Authentication < ActiveRecord::Base
 
   belongs_to :user
 
-  after_initialize :generate_challenge
   before_create :validate_user_is_verified
 
-  def generate_challenge
+  before_validation(on: :create) do
     self.challenge ||= SecureRandom.hex(32)
   end
 
