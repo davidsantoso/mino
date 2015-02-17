@@ -7,7 +7,9 @@
 one:
   message: 52c23fb73c39eaabc6592a6279e61e1a901df93c13d418dadcd3e135e5555675
   token: e995599cea1a73787618613fc799d4c1e3b0de9820b57132b01771d8db42064c
-# column: value
-#
-two: {}
-#  column: value
+  active: false
+
+two:
+  message: ec27e001dd733bc93f74febc316033d67cc8c874726e71bc4d4017805de63aa6
+  token: 484ea60f719a449b615337fed6af83af4c2a188d6695e824fdd3c5ca3ce2fa98
+  active: true
