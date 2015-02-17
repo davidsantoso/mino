@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 20150213030540) do
     t.integer  "user_id"
     t.string   "message"
     t.string   "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "active",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
