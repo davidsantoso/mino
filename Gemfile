@@ -8,6 +8,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn'
 gem 'sidekiq'
+gem 'rbnacl'
+gem 'rbnacl-libsodium'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
