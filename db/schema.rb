@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217013836) do
+ActiveRecord::Schema.define(version: 20150224032215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20150217013836) do
     t.string   "email"
     t.string   "email_verification_token"
     t.boolean  "verified",                 default: false
-    t.text     "public_key"
-    t.text     "encrypted_private_key"
+    t.binary   "public_key"
+    t.binary   "encrypted_private_key"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
