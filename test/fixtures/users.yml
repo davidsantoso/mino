@@ -10,6 +10,7 @@ one:
   verified: null
   public_key: MIIBIjANBgk
   encrypted_private_key: NmIIFHzBJBb==
+  nonce: ke8WdjrRt3
   # created_at: ""
   # updated_at: ""
 
@@ -19,6 +20,7 @@ two:
   verified: false
   public_key: OCaQ8AMIIBk
   encrypted_private_key: CgKCAQEAsw==
+  nonce: ne8WDjcRR3
   # created_at: ""
   # updated_at: ""
 
@@ -28,5 +30,6 @@ three:
   verified: true
   public_key: f38ned8DhqC
   encrypted_private_key: HgdCAsE1s2==
+  nonce: dYwWd2rRt5
   # created_at: ""
   # updated_at: ""

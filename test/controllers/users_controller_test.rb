@@ -29,7 +29,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: {email: "daryl.dixon@mail.com", public_key: "PINBwjANBgq", encrypted_private_key: "NUIIWHzdJdb=="}
+      post :create, user: {email: "daryl.dixon@mail.com", public_key: "PINBwjANBgq", encrypted_private_key: "NUIIWHzdJdb==", nonce: "Dn33Ajdfh3"}
     end
     user = assigns(:user)
 
@@ -38,7 +38,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return email already taken" do
-    post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb=="}
+    post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb==", nonce: "gEn5cq42ci" }
     user = assigns(:user)
 
     assert_not user.valid?
@@ -47,7 +47,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return public key already taken" do
-    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb=="}
+    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb==", nonce: "nnf8bAd83n" }
     user = assigns(:user)
 
     assert_not user.valid?
@@ -56,7 +56,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return encrypted private key already taken" do
-    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb=="}
+    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb==", nonce: "lD82nEom82" }
     user = assigns(:user)
 
     assert_not user.valid?
