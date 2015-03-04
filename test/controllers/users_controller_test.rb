@@ -29,7 +29,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: {email: "daryl.dixon@mail.com", public_key: "PINBwjANBgq", encrypted_private_key: "NUIIWHzdJdb==", nonce: "Dn33Ajdfh3"}
+      post :create, user: {email: "daryl.dixon@mail.com", public_key: "PINBwjANBgq", encrypted_private_key: "NUIIWHzdJdb==", nonce: "Dn33Ajdfh3", salt: "Knw83ns01E"}
     end
     user = assigns(:user)
 
@@ -38,7 +38,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return email already taken" do
-    post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb==", nonce: "gEn5cq42ci" }
+    post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb==", nonce: "gEn5cq42ci", salt: "ipnEd5n21n"}
     user = assigns(:user)
 
     assert_not user.valid?
@@ -47,7 +47,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return public key already taken" do
-    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb==", nonce: "nnf8bAd83n" }
+    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb==", nonce: "nnf8bAd83n", salt: "hN8d74s1nA" }
     user = assigns(:user)
 
     assert_not user.valid?
@@ -56,7 +56,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should return encrypted private key already taken" do
-    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb==", nonce: "lD82nEom82" }
+    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb==", nonce: "lD82nEom82", salt: "ke5oM1bf9A" }
     user = assigns(:user)
 
     assert_not user.valid?
@@ -67,7 +67,7 @@ class UsersControllerTest < ActionController::TestCase
   test "should send email address verification email" do
     skip "Need to figure out how to best test an after_commit callback"
     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb=="}
+      post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb==", nonce: "Hm27dm103ma", salt: "nI382bdkKd" }
     end
     email_address_verification_email = ActionMailer::Base.deliveries.last
 

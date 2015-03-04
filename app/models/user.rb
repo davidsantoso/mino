@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  validates_presence_of :email, :public_key, :encrypted_private_key, :nonce
-  validates_uniqueness_of :email, :public_key, :encrypted_private_key, :nonce
+  validates_presence_of :email, :public_key, :encrypted_private_key, :nonce, :salt
+  validates_uniqueness_of :email, :public_key, :encrypted_private_key
 
   before_create :setup_email_verification
   after_create :send_email_address_verification_token

@@ -11,6 +11,7 @@ one:
   public_key: MIIBIjANBgk
   encrypted_private_key: NmIIFHzBJBb==
   nonce: ke8WdjrRt3
+  salt: Pend82nda3
   # created_at: ""
   # updated_at: ""
 
@@ -21,6 +22,7 @@ two:
   public_key: OCaQ8AMIIBk
   encrypted_private_key: CgKCAQEAsw==
   nonce: ne8WDjcRR3
+  salt: neEd12n2aJ
   # created_at: ""
   # updated_at: ""
 
@@ -31,5 +33,6 @@ three:
   public_key: f38ned8DhqC
   encrypted_private_key: HgdCAsE1s2==
   nonce: dYwWd2rRt5
+  salt: LeqdN23da9
   # created_at: ""
   # updated_at: ""

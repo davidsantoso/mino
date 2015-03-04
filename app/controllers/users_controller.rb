@@ -44,6 +44,6 @@ class UsersController < ApplicationController
   private
 
   def user_create_params
-    params.require(:user).permit(:email, :public_key, :encrypted_private_key, :nonce)
+    params.require(:user).permit(:email, :public_key, :encrypted_private_key, :nonce, :salt)
   end
 end
