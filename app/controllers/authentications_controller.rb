@@ -1,4 +1,5 @@
 class AuthenticationsController < ApplicationController
+  before_filter :decrypt_request_body
 
   # POST /authentications
   def create
@@ -17,7 +18,7 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-  # PATCH /authentications/:token
+  # PATCH /authentications/:challenge
   #
   # This isn't exactly RESTful. This PATCH is really only updating the active
   # attribute to true if the challenge was properly decrypted and matches

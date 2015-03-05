@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :decrypt_request_body
 
   # GET /users
   def index
