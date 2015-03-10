@@ -13,12 +13,6 @@ class Authentication < ActiveRecord::Base
     errors.add(:user_id, "email address has not been verified") if !self.user.verified
   end
 
-  def encrypted_challenge
-    # Just return the unencrypted challenge for now
-    # In the future, this will encrypt it with the public key
-    self.challenge
-  end
-
   def activate
     self.active = true
     self.token = SecureRandom.hex(32)
