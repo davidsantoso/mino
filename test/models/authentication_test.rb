@@ -14,11 +14,6 @@ class AuthenticationTest < ActiveSupport::TestCase
     skip "Write test directly above"
   end
 
-  test "should respond to encrypted_challenge" do
-    @authentication = authentications(:one)
-    assert_respond_to @authentication, :encrypted_challenge
-  end
-
   test "should respond to activate" do
     @authentication = authentications(:one)
     assert_respond_to @authentication, :activate
