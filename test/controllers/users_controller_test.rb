@@ -31,20 +31,71 @@ class UsersControllerTest < ActionController::TestCase
   # {
   #   data: {
   #     email: "daryl.dixon@mail.com",
-  #     public_key: "vYSsoH4EAmaSAG3X4RCzbsTqFBa+r6+MQyY6nodR9gY=",
-  #     encrypted_private_key: "k/5MxO14VSscJhi7axrEGa9wUYtUpxdihMKIT2vj36g=",
-  #     nonce: "hqaf/aSnR6qzW7JIbV4HQZ45XGSm42fp",
-  #     salt: "vczSdHujD1A51GAcbFdQZyxc1TIju1EuL79clWdDWBQ="
+  #     public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
+  #     encrypted_private_key: "yybVgE+zUyH6CkdnA8Jozbx13OsKmphyFlVTjxkSky7W2aYKx52RRXNs2PKOVztF"
+  #     nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv",
+  #     salt: "AEoZJXoc6g7Tw1b3p1QtaNMFlFqqh12sZdBFGjXKx7c="
   #   },
-  #   public_key: "vYSsoH4EAmaSAG3X4RCzbsTqFBa+r6+MQyY6nodR9gY=",
-  #   nonce: "hqaf/aSnR6qzW7JIbV4HQZ45XGSm42fp"
+  #   public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
+  #   nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv"
   # }
+  #
+  # To recreate this exact payload-
+  #
+  # password: "secret"
+  # scrypt genratedkey: "IVnS43pgVXnQGeiZcSzrjzbZ7+9j2CkECf2r74zuNO0="
+  # unencrypted private key: "OQUWOJtLTme4nRs1ACClzq6PtaBWJBmo78ckIsn8nt4="
+  #
+  # ---------------------------------------------------------------------------
+  #
+  # In Javascript:
+  #
+  # See http://doc.libsodium.org/password_hashing/README.html for masterKey generation
+  #
+  # masterKey = sodium.crypto_pwhash_scryptsalsa208sha256(
+  #   "secret",
+  #   salt,
+  #   sodium.crypto_pwhash_scryptsalsa208sha256_OPSLIMIT_INTERACTIVE,
+  #   sodium.crypto_pwhash_scryptsalsa208sha256_MEMLIMIT_INTERACTIVE,
+  #   32
+  # )
+  #
+  # ---------------------------------------------------------------------------
+  #
+  # See http://doc.libsodium.org/secret-key_cryptography/authenticated_encryption.html
+  # for private key encryption
+  #
+  # encryptedPrivateKey = sodium.crypto_secretbox_easy(
+  #   privateKey,
+  #   nonce,
+  #   masterKey)
+  #
+  # ---------------------------------------------------------------------------
+  #
+  # See http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html
+  # for encrypting the entire payload to be later decrypted
+  #
+  # data = { user: { email: email,
+  #                  public_key: sodium.to_base64(publicKey),
+  #                  encrypted_private_key: sodium.to_base64(encryptedPrivateKey),
+  #                  nonce: sodium.to_base64(nonce),
+  #                  salt: sodium.to_base64(salt)
+  #                }
+  #              }
+  #
+  # encrypted_payload = sodium.crypto_box_easy(
+  #   JSON.stringify(data),
+  #   nonce,
+  #   sodium.from_base64(minoPublicKey),
+  #   privateKey
+  # )
+  #
   test "should create user" do
     assert_difference('User.count') do
       post :create, {
-        data: "OFpy2Ew9Z0kePvkoCkh2RcIuzQVysu8sXMNqiTAaTIHsHLI4IsBq4rCfEzwK0XfroTONCn2GHPSioJRXwkwy3LPV3iTTtw/wiTqWun5NVSsd0ehnwHnheUilUeh66UVYurj86FCkf9EHOd86NmrsVykm4KrgoyhvII+jlsaE6dcD1gKOhR59X3EaGBwj2aAOIqGbDnrTCrwIZa+PaoSuyPjzmA40jEGxQUCCGIz4LYJXdLfG7zRKrw0MZeCzK7p9q2XPtSHi0mXZV2BKakqevn1pe6nt6ObF27GdfCkzbSVeK/ovw5TtrdQmh+EgFS3C3ml/W893UhHPNyBSjVkyKGV3aZc8cwqu1vhqmYqEpJFxiNFnnmC387GhN0Vd",
-        public_key: "vYSsoH4EAmaSAG3X4RCzbsTqFBa+r6+MQyY6nodR9gY=",
-        nonce: "hqaf/aSnR6qzW7JIbV4HQZ45XGSm42fp"
+        data: "cdVQSa6X5hwLMA006r0e9AqgxIae4XcB3os7UreMW6DutBNpAzvNtYPTTEasvfFmXutvdIMhP2pqiRTdZYKQu7qsTDRV8FF9RQYp9StDoxDDIaPIb3JS0EsZ9IMPpdtOaqnxBLV0K/W9jsa1GGhBlOUO5wsgWALqHt5G65EaBN8+Ef5/Qe6VtNijdagYF++OMRlpSwvWRqYZ89FSG1i4b5feHTjLruGc2gLHOohQ1sIylNCukIC77kWfYNZzOSWxso1HatSHoieYrJjeu+iaaGmdzgjLpPE1WRDGOJ3Ycaa1wcErCePdtWF8jcxP5x5iCQ5U0jLHndf0HvZl8TC1f4759KSMhDraVdWS/9YKq/xoTuYDoEnhytmncgnEcB0yFnbySY+wnWSp4STilTur0ns=",
+        public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
+        nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv"
       }
     end
 

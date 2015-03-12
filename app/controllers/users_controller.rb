@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :decrypt_request_body
+  before_filter :decrypt_request_data, except: [:index, :new, :show, :edit]
 
   # GET /users
   def index
@@ -45,6 +45,6 @@ class UsersController < ApplicationController
   private
 
   def user_create_params
-    params.require(:user).permit(:email, :public_key, :encrypted_private_key, :nonce, :salt)
+    @data.require(:user).permit(:email, :public_key, :encrypted_private_key, :nonce, :salt)
   end
 end
