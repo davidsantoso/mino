@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   get '/verification' => 'application#verification'
 
-  post '/authentications' => 'authentications#create'
-  patch '/authentications' => 'authentications#update'
-  delete '/authentications' => 'authentications#destroy'
-
-  resources :users
+  resources :authentications, only: [:create, :update, :destroy]
+  resources :users, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

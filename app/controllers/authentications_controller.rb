@@ -1,5 +1,5 @@
 class AuthenticationsController < ApplicationController
-  before_filter :decrypt_request_body
+  # before_filter :decrypt_request_body
 
   # POST /authentications
   def create
@@ -12,13 +12,13 @@ class AuthenticationsController < ApplicationController
       # Manually building json response since we'll be encrypting
       # the message with the users public key before sending back
       render json: { authentication: {
-          challenge: @authentication.encrypted_challenge
+          challenge: @authentication.challenge
         }
       }, status: :created
     end
   end
 
-  # PATCH /authentications/:challenge
+  # PATCH /authentication/:challenge
   #
   # This isn't exactly RESTful. This PATCH is really only updating the active
   # attribute to true if the challenge was properly decrypted and matches

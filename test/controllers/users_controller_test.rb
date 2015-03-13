@@ -6,26 +6,26 @@ class UsersControllerTest < ActionController::TestCase
     @request.headers["Accept"] = "application/json"
     @request.headers["Content-Type"] = "application/json"
   end
-
-  test "index should return 403" do
-    get :index
-    assert_response :forbidden
-  end
-
-  test "new should return 403" do
-    get :new
-    assert_response :forbidden
-  end
-
-  test "show should return 403" do
-    get :show, {id: 1}
-    assert_response :forbidden
-  end
-
-  test "edit should return 403" do
-    get :edit, {id: 1}
-    assert_response :forbidden
-  end
+  #
+  # test "index should return 403" do
+  #   get :index
+  #   assert_response :forbidden
+  # end
+  #
+  # test "new should return 403" do
+  #   get :new
+  #   assert_response :forbidden
+  # end
+  #
+  # test "show should return 403" do
+  #   get :show, {id: 1}
+  #   assert_response :forbidden
+  # end
+  #
+  # test "edit should return 403" do
+  #   get :edit, {id: 1}
+  #   assert_response :forbidden
+  # end
 
   # This is what the data attribute below should decrypt to
   # {
