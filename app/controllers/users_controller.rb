@@ -1,26 +1,5 @@
 class UsersController < ApplicationController
   before_filter :decrypt_request_data, except: [:index, :new, :show, :edit]
-
-  # GET /users
-  def index
-    head :forbidden
-  end
-
-  # GET /users/new
-  def new
-    head :forbidden
-  end
-
-  # GET /users/:id
-  def show
-    head :forbidden
-  end
-
-  # GET /users/:id/edit
-  def edit
-    head :forbidden
-  end
-
   # POST /users
   def create
     @user = User.create(user_create_params)
