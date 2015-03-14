@@ -21,13 +21,19 @@ class ApplicationController < ActionController::Base
   end
 
   def decrypt_request_data
+    # Get the params and convert back to the byte array values
     user_public_key = Base64.decode64(params[:public_key])
     nonce = Base64.decode64(params[:nonce])
     encrypted_data = Base64.decode64(params[:data])
 
+    # Initalize a box and decrypt the params data value
     box = RbNaCl::Box.new(user_public_key, MINO_PRIVATE_KEY)
     decrypted_data = JSON.parse(box.decrypt(nonce, encrypted_data))
 
+    # Hack? We still want to use strong parameters in the controller
+    # actions to follow, so conver the decrypted data hash back to
+    # ActionController Parameters so we can transparently use the data
+    # hash like we would if it wasn't encrypted
     @data = ActionController::Parameters.new(decrypted_data)
   end
 
