@@ -6,26 +6,6 @@ class UsersControllerTest < ActionController::TestCase
     @request.headers["Accept"] = "application/json"
     @request.headers["Content-Type"] = "application/json"
   end
-  #
-  # test "index should return 403" do
-  #   get :index
-  #   assert_response :forbidden
-  # end
-  #
-  # test "new should return 403" do
-  #   get :new
-  #   assert_response :forbidden
-  # end
-  #
-  # test "show should return 403" do
-  #   get :show, {id: 1}
-  #   assert_response :forbidden
-  # end
-  #
-  # test "edit should return 403" do
-  #   get :edit, {id: 1}
-  #   assert_response :forbidden
-  # end
 
   # This is what the data attribute below should decrypt to
   # {
@@ -46,54 +26,15 @@ class UsersControllerTest < ActionController::TestCase
   # scrypt genratedkey: "IVnS43pgVXnQGeiZcSzrjzbZ7+9j2CkECf2r74zuNO0="
   # unencrypted private key: "OQUWOJtLTme4nRs1ACClzq6PtaBWJBmo78ckIsn8nt4="
   #
-  # ---------------------------------------------------------------------------
-  #
-  # In Javascript:
-  #
-  # See http://doc.libsodium.org/password_hashing/README.html for masterKey generation
-  #
-  # masterKey = sodium.crypto_pwhash_scryptsalsa208sha256(
-  #   "secret",
-  #   salt,
-  #   sodium.crypto_pwhash_scryptsalsa208sha256_OPSLIMIT_INTERACTIVE,
-  #   sodium.crypto_pwhash_scryptsalsa208sha256_MEMLIMIT_INTERACTIVE,
-  #   32
-  # )
-  #
-  # ---------------------------------------------------------------------------
-  #
-  # See http://doc.libsodium.org/secret-key_cryptography/authenticated_encryption.html
-  # for private key encryption
-  #
-  # encryptedPrivateKey = sodium.crypto_secretbox_easy(
-  #   privateKey,
-  #   nonce,
-  #   masterKey)
-  #
-  # ---------------------------------------------------------------------------
-  #
-  # See http://doc.libsodium.org/public-key_cryptography/authenticated_encryption.html
-  # for encrypting the entire payload to be later decrypted
-  #
-  # data = { user: { email: email,
-  #                  public_key: sodium.to_base64(publicKey),
-  #                  encrypted_private_key: sodium.to_base64(encryptedPrivateKey),
-  #                  nonce: sodium.to_base64(nonce),
-  #                  salt: sodium.to_base64(salt)
-  #                }
-  #              }
-  #
-  # encrypted_payload = sodium.crypto_box_easy(
-  #   JSON.stringify(data),
-  #   nonce,
-  #   sodium.from_base64(minoPublicKey),
-  #   privateKey
-  # )
-  #
   test "should create user" do
     assert_difference('User.count') do
       post :create, {
-        data: "cdVQSa6X5hwLMA006r0e9AqgxIae4XcB3os7UreMW6DutBNpAzvNtYPTTEasvfFmXutvdIMhP2pqiRTdZYKQu7qsTDRV8FF9RQYp9StDoxDDIaPIb3JS0EsZ9IMPpdtOaqnxBLV0K/W9jsa1GGhBlOUO5wsgWALqHt5G65EaBN8+Ef5/Qe6VtNijdagYF++OMRlpSwvWRqYZ89FSG1i4b5feHTjLruGc2gLHOohQ1sIylNCukIC77kWfYNZzOSWxso1HatSHoieYrJjeu+iaaGmdzgjLpPE1WRDGOJ3Ycaa1wcErCePdtWF8jcxP5x5iCQ5U0jLHndf0HvZl8TC1f4759KSMhDraVdWS/9YKq/xoTuYDoEnhytmncgnEcB0yFnbySY+wnWSp4STilTur0ns=",
+        data: "cdVQSa6X5hwLMA006r0e9AqgxIae4XcB3os7UreMW6DutBNpAzvNtYPTTEasvfFmXutvdIMhP2
+          pqiRTdZYKQu7qsTDRV8FF9RQYp9StDoxDDIaPIb3JS0EsZ9IMPpdtOaqnxBLV0K/W9jsa1GGhB
+          lOUO5wsgWALqHt5G65EaBN8+Ef5/Qe6VtNijdagYF++OMRlpSwvWRqYZ89FSG1i4b5feHTjLru
+          Gc2gLHOohQ1sIylNCukIC77kWfYNZzOSWxso1HatSHoieYrJjeu+iaaGmdzgjLpPE1WRDGOJ3Y
+          caa1wcErCePdtWF8jcxP5x5iCQ5U0jLHndf0HvZl8TC1f4759KSMhDraVdWS/9YKq/xoTuYDoE
+          nhytmncgnEcB0yFnbySY+wnWSp4STilTur0ns=",
         public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
         nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv"
       }
@@ -105,9 +46,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  # Matches user one email fixture
   test "should return email already taken" do
-    skip
-    post :create, user: {email: "rick.grimes@mail.com", public_key: "MnIdIHANNgk", encrypted_private_key: "TmIcFFWzJBb==", nonce: "gEn5cq42ci", salt: "ipnEd5n21n"}
+    post :create, {
+      data: "f/mO9k0mp7Bds9v8ZQNpcOYELqpAM0yV8Kczr0i0/XJ306bzXFL3DAhXJ3YPSoAMTLtafCKjCyE5
+        YxdR7umK2W8H7kc637gGD6QrZHAE8uF10HYImZlOUihGeYZ+xTl1N+7TUeOiJUexBwT+7yZXCIcH
+        1aqgliWKAEudci3WfgX7BCi1T5M5ShGU933jjptCMLPqkBRyCexRpChziMH1wZ+T+2JHVBZNFBK1
+        Strg3DidnLDWdDjxyowI4R+0nI1SZuZEALrD64cs8wLYiOo9BhSbIfeDSBAHHQBOjqrIKBAaObUB
+        vcJL4rD3gLFt/2+5Y+GQ+QJYcutSzWBosmUHWWPNqVuZATFCrDicu+nnr+hJe5/5k++niNSWtAV5
+        /Iva5+0xsCFEdHICRubAFQRzA+U=",
+      public_key: "QWiZxX4DAf45DW47DuxqI0ibFvRng1aV7oPvDx1QwwY=",
+      nonce: "Txu23R/uBHWjyEIxofUbw6N+eK+Bb1gy"
+    }
+
     user = assigns(:user)
 
     assert_not user.valid?
@@ -115,9 +66,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :conflict
   end
 
+  # Matches user two public key fixture
   test "should return public key already taken" do
-    skip
-    post :create, user: {email: "michonne@mail.com", public_key: "MIIBIjANBgk", encrypted_private_key: "nmIEFdWRmBb==", nonce: "nnf8bAd83n", salt: "hN8d74s1nA" }
+    post :create, {
+      data: "0S1ZRrx5udeanJca298E9Po9Fi8vYXdex2nA5NxgvKNT6/hO6Jsw60xr7aKy7e3oPtRPwLB8Qe86
+        8H11nj6HY5rDC9HryqyvjKFFohTt8+ULD0wuUDURWk9cBq2ndgP9Fi1uC9WzifO5IhDc5oHLbisu
+        b4aePPgkJ2+9SnBeUxS7cHsYKQZgmSD3bisjyT76ULbFP6CH2tCFMPHDdRKyelgsZvIy/rdiK+qP
+        rC2LMc7yjMZMq2V/rXsAWoxTkdQagqZbrMOiG/frHDXydCCVeR+ZJ9zbXj48hDO53IxYJ42imt8i
+        Rxx9s6VrB9jwW/q6GgN1rkCaTuYAKp/2B58PYrbgqhnqP77btynjlhdP5ZmrfLXile5HU/1baZMu
+        wdi+V9Zq4NWKYDQhuu08mpc=",
+      public_key: "u1J/opdSsZzBRO+AWch00Af13KDJcgb4WI57KDfkoxQ=",
+      nonce: "y7Ti4KP44QenIL181vlKENRuidk/qrOH"
+    }
+
     user = assigns(:user)
 
     assert_not user.valid?

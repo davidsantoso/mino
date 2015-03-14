@@ -8,10 +8,10 @@ one:
   email: rick.grimes@mail.com
   email_verification_token: ""
   verified: null
-  public_key: MIIBIjANBgk
-  encrypted_private_key: NmIIFHzBJBb==
-  nonce: ke8WdjrRt3
-  salt: Pend82nda3
+  public_key: WYQmWeQHRvqxvYCw46914Q4OBdo0B26mW5QFblJ0sQA=
+  encrypted_private_key: pyEVfEvYsQNLTkYx6jjsxL5h3viXTxgn/N08Zap4Hz/DwET6mXftgUadMAXpIb9E
+  nonce: OPhgltVYYz6iR3Hva2rMD0eYWFSKLy9w
+  salt: aI2ex71ZVh98Yn2SW4GzYDd0jI/8PGpHMYr+Tb0FaCQ=
   # created_at: ""
   # updated_at: ""
 
@@ -19,10 +19,10 @@ two:
   email: sasha@mail.com
   email_verification_token: TH0s7wfHfzqFWTMB21pRgy9aTrMlDecFv
   verified: false
-  public_key: OCaQ8AMIIBk
-  encrypted_private_key: CgKCAQEAsw==
-  nonce: ne8WDjcRR3
-  salt: neEd12n2aJ
+  public_key: u1J/opdSsZzBRO+AWch00Af13KDJcgb4WI57KDfkoxQ=
+  encrypted_private_key: iHi35Rsp+XNSx6klQnRbXBJsYxMAx+78yFjca3XlRoaMEB2GNzUxXuvNhl1pr8FQ
+  nonce: jsHMMT+cfFqcaTKN5Ve2BfEY2ppdzGTh
+  salt: 1NeIyuLhLKtjxt/Pc33KWmQbfkFWXEvGFEeAjhfSS1A=
   # created_at: ""
   # updated_at: ""
 
@@ -30,9 +30,9 @@ three:
   email: beth.greene@mail.com
   email_verification_token: nW0d6wdHfz8FWnMw22pRfyTazr6lDGc1v
   verified: true
-  public_key: f38ned8DhqC
-  encrypted_private_key: HgdCAsE1s2==
-  nonce: dYwWd2rRt5
-  salt: LeqdN23da9
+  public_key: S6R+hvHSnPuuyDGkoJw2Y8d8ovEFZ9DRS7pec8UtDjY=
+  encrypted_private_key: hAJuAUhLUzLfau305wKb4SxHMfENjg1blK6gOlgX3mpIFGeA8N0Uy9WF66d7Am/L
+  nonce: PUpQe666au9WGgTBxh7W6XmyamJJWzZo
+  salt: jWmgM6MfnBnexsf9wHI/NSA6BwZJCoFponsy0BYlJXo=
   # created_at: ""
   # updated_at: ""
