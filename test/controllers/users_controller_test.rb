@@ -86,9 +86,19 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :conflict
   end
 
+  # Matches user three encrypted private key fixture
   test "should return encrypted private key already taken" do
-    skip
-    post :create, user: {email: "michonne@mail.com", public_key: "htIBNjaNKgk", encrypted_private_key: "NmIIFHzBJBb==", nonce: "lD82nEom82", salt: "ke5oM1bf9A" }
+    post :create, {
+      data: "wWrEEviPfW6CGnO4c6JCo2JmYMFQjtTDm277tZ2Ro16Koh3N3UQZHwAcD0uIsr+uW/FCK0JF0EA2
+        j2RMRxZbU4aJya9jzdqHqgA5AhakenrW78jxPa/MDvKoPhA9X8ZQJE5WuiPeBFINIFORqay5NCGI
+        lhzEspq4DCME9x8sCI9DIEV2ywCx7N6I6GBRC0CegfZg8DHu62iPoviKwrd8/w1PUMD4vtqa2rLL
+        D/zboY/1rljgjKJpzRgbAiKctlOxykz8CuxysB1U02UNTX8A4fwln8C0ngsFE0sWDrOykMrmNC1b
+        Ov7MYiJGIAwaUfeAwuWN8lr5FZNGdPVfg79rMaHHhJil9iYLIZEMwgKvAmcJ6czfhQiu2GIGG5FX
+        /qwvHphEz9kJpU0gnr+C6DAsEA==",
+      public_key: "m1fc7FUh1uQ7ta30j3xvsr73Dq+KO2k5YHWUgbYJHlI=",
+      nonce: "uEpm4/ywZCnakQ1y21r3NVy1nlehWtbe"
+    }
+
     user = assigns(:user)
 
     assert_not user.valid?
