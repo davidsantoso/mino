@@ -4,7 +4,6 @@ ruby '2.2.0'
 
 gem 'rails', '4.2.0'
 gem 'pg'
-gem 'jbuilder', '~> 2.0'
 gem 'puma'
 gem 'sidekiq'
 gem 'rbnacl'
