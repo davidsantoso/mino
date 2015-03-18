@@ -44,6 +44,9 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_empty user.errors
     assert_response :success
+    assert_match /data/, @response.body
+    assert_match /public_key/, @response.body
+    assert_match /nonce/, @response.body
   end
 
   # Matches user one email fixture
@@ -64,6 +67,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_not user.valid?
     assert_equal [:email], user.errors.keys
     assert_response :conflict
+    assert_match /data/, @response.body
+    assert_match /public_key/, @response.body
+    assert_match /nonce/, @response.body
   end
 
   # Matches user two public key fixture
@@ -104,6 +110,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_not user.valid?
     assert_equal [:encrypted_private_key], user.errors.keys
     assert_response :conflict
+    assert_match /data/, @response.body
+    assert_match /public_key/, @response.body
+    assert_match /nonce/, @response.body
   end
 
   test "should send email address verification email" do

@@ -1,5 +1,8 @@
 class AuthenticationsController < ApplicationController
-  # before_filter :decrypt_request_body
+  # The user doesn't have their private key yet so this is the only controller
+  # action which does not encrypt the response. If we did encrypt it, the user
+  # would have no way of decypting since they won't have their private key
+  skip_before_filter :initialize_encrypted_response, only: :create
 
   # POST /authentications
   def create
@@ -7,7 +10,7 @@ class AuthenticationsController < ApplicationController
     @authentication = user.authentications.create
 
     if @authentication.errors.any?
-      render json: { errors: @authentication.errors }, status: :conflict
+      render json: @encrypted_response.build(@authentication.errors), status: :conflict
     else
       # Manually building json response since we'll be encrypting
       # the message with the users public key before sending back
