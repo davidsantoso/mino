@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     # actions to follow, so convert the decrypted data hash back to
     # ActionController Parameters so we can transparently use the data
     # hash like we would if it wasn't encrypted
-    @data = ActionController::Parameters.new(decrypted_data)
+    @request_params = ActionController::Parameters.new(decrypted_data)
   end
 
   def initialize_encrypted_response

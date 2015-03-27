@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   # @data instance variable is being used instead of params because
   # there is the decrypt preprocess happening in application controller
   def user_create_params
-    @data.require(:user).permit(:email,
+    @request_params.require(:user).permit(:email,
                                 :public_key,
                                 :encrypted_private_key,
                                 :nonce,
