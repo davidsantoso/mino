@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get '/verification' => 'application#verification'
 
-  resources :authentications, only: [:create, :update, :destroy]
   resources :users, only: [:create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
