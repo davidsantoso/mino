@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   before_create :setup_email_verification
   after_create :send_email_address_verification_token
 
+  has_many :clients
+
   def setup_email_verification
     self.verified = false
     self.email_verification_token = SecureRandom.urlsafe_base64(64, true)
