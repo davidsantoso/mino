@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   before_create :setup_email_verification
   after_create :send_email_address_verification_token
 
-  has_many :clients
+  has_many :clients, dependent: :destroy
+  has_many :verifications, as: :verifiable, dependent: :destroy
 
   def setup_email_verification
     self.verified = false

@@ -7,6 +7,7 @@ class Client < ActiveRecord::Base
   after_create :send_verification_email
 
   belongs_to :user
+  has_many :verifications, as: :verifiable, dependent: :destroy
 
   def setup_email_verification
     self.verified = false
