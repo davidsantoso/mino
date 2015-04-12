@@ -1,26 +1,11 @@
 class ApplicationController < ActionController::Base
   # Decrypt the request body sent by clients and initialize a box to encrypt
   # the response to the client
-  before_filter :initialize_encrypted_response, except: [:verification]
-  before_filter :decrypt_request_data, except: [:verification]
+  before_filter :initialize_encrypted_response
+  before_filter :decrypt_request_data
 
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :null_session, if: :json_request?
-
-  # GET /verification
-  # Email address verification endpoint. No real RESTful action for it...
-  def verification
-    if params[:email] && params[:token]
-      user = User.find_by_email(params[:email])
-
-      if user.email_address_verified?(params[:token])
-        render "users/verification"
-        return true
-      end
-    end
-
-    head :forbidden
-  end
 
   def decrypt_request_data
     begin

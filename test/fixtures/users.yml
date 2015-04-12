@@ -4,10 +4,11 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
 one:
+  id: 1
   email: rick.grimes@mail.com
-  email_verification_token: ""
-  verified: null
+  verified: true
   public_key: WYQmWeQHRvqxvYCw46914Q4OBdo0B26mW5QFblJ0sQA=
   encrypted_private_key: pyEVfEvYsQNLTkYx6jjsxL5h3viXTxgn/N08Zap4Hz/DwET6mXftgUadMAXpIb9E
   nonce: OPhgltVYYz6iR3Hva2rMD0eYWFSKLy9w
@@ -17,7 +18,6 @@ one:
 
 two:
   email: sasha@mail.com
-  email_verification_token: TH0s7wfHfzqFWTMB21pRgy9aTrMlDecFv
   verified: false
   public_key: u1J/opdSsZzBRO+AWch00Af13KDJcgb4WI57KDfkoxQ=
   encrypted_private_key: iHi35Rsp+XNSx6klQnRbXBJsYxMAx+78yFjca3XlRoaMEB2GNzUxXuvNhl1pr8FQ
@@ -28,7 +28,6 @@ two:
 
 three:
   email: beth.greene@mail.com
-  email_verification_token: nW0d6wdHfz8FWnMw22pRfyTazr6lDGc1v
   verified: true
   public_key: S6R+hvHSnPuuyDGkoJw2Y8d8ovEFZ9DRS7pec8UtDjY=
   encrypted_private_key: I7IWTZ+HMvpD/o+ieZRZ+IhHUgA8u5G1WAntxKeOQ9CoEd48gtHdpr/V6HQS0qOj

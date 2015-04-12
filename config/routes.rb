@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get '/verification' => 'application#verification'
-
   resources :users, only: [:create, :update, :destroy]
   resources :verifications, only: [:index]
 

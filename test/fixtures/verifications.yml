@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  token: "DzHrKwgsbw8rIFLtJm25loEE-rY-4yPwxU0IkYbkcF4BIz1BGk50kW0afOx0g6sD0_HRLPJJqARlN4Tj-zU5Iw=="
+  verifiable_id: 1
+  verifiable_type: User
+
+two:
+  token: "gr4yamjzehNf_eKFt9YY0kucAH-XWaH-M0A9yR5mj6Z6cfrqmyvjfAj4Q5kbXoRAs7nUmeVoKXtpv65X9_CWKQ=="
+  verifiable_id: 1
+  verifiable_type: Client

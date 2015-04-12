@@ -1,20 +1,25 @@
 class Client < ActiveRecord::Base
-  validates_uniqueness_of :access_token
-  validates_presence_of :access_token
+  validates_uniqueness_of :signature
+  validates_presence_of :signature
   validates_presence_of :user_id
 
-  before_create :setup_email_verification
   after_create :send_verification_email
 
   belongs_to :user
   has_many :verifications, as: :verifiable, dependent: :destroy
 
-  def setup_email_verification
-    self.verified = false
-    self.email_verification_token = SecureRandom.urlsafe_base64(64, true)
+  def send_verification_email
+    verification = self.verifications.create
+    VerificationMailer.verify_client(self.user.email, self.signature, verification.token).deliver_later
   end
 
-  def send_verification_email
-    ClientMailer.verify_client(self.user.email, self.email_verification_token).deliver_later
+  def verify(params)
+    if self.signature == params[:signature]
+      self.verified = true
+      self.enabled = true
+      save
+    else
+      false
+    end
   end
 end

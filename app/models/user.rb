@@ -2,25 +2,22 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :public_key, :encrypted_private_key, :nonce, :salt
   validates_uniqueness_of :email, :public_key, :encrypted_private_key
 
-  before_create :setup_email_verification
-  after_create :send_email_address_verification_token
+  after_create :send_verification_email
 
   has_many :clients, dependent: :destroy
   has_many :verifications, as: :verifiable, dependent: :destroy
 
-  def setup_email_verification
-    self.verified = false
-    self.email_verification_token = SecureRandom.urlsafe_base64(64, true)
+  def send_verification_email
+    verification = self.verifications.create
+    VerificationMailer.verify_email_address(self.email, verification.token).deliver_later
   end
 
-  def send_email_address_verification_token
-    UserMailer.verify_email_address(self.email, self.email_verification_token).deliver_later
-  end
-
-  def email_address_verified?(token)
-    if self.email_verification_token == token
+  def verify(params)
+    if self.email == params[:email]
       self.verified = true
-      self.save
+      save
+    else
+      false
     end
   end
 end

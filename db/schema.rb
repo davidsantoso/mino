@@ -11,44 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410014753) do
+ActiveRecord::Schema.define(version: 20150412172849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.integer  "user_id",                                              null: false
-    t.string   "access_token",             limit: 255,                 null: false
-    t.string   "email_verification_token", limit: 255
-    t.boolean  "verified",                             default: false
-    t.boolean  "enabled",                              default: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.integer  "user_id",                                null: false
+    t.string   "signature",  limit: 255,                 null: false
+    t.boolean  "verified",               default: false
+    t.boolean  "enabled",                default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
-  add_index "clients", ["access_token"], name: "index_clients_on_access_token", unique: true, using: :btree
+  add_index "clients", ["signature"], name: "index_clients_on_signature", unique: true, using: :btree
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                    limit: 255,                 null: false
-    t.string   "email_verification_token", limit: 255
-    t.boolean  "verified",                             default: false
-    t.text     "public_key",                                           null: false
-    t.text     "encrypted_private_key",                                null: false
-    t.string   "nonce",                                                null: false
-    t.string   "salt",                                                 null: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.string   "email",                 limit: 255,                 null: false
+    t.boolean  "verified",                          default: false
+    t.text     "public_key",                                        null: false
+    t.text     "encrypted_private_key",                             null: false
+    t.string   "nonce",                                             null: false
+    t.string   "salt",                                              null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "verifications", force: :cascade do |t|
-    t.string   "token",           null: false
+    t.string   "token",                           null: false
     t.integer  "verifiable_id"
     t.string   "verifiable_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "expired",         default: false
   end
 
   add_index "verifications", ["verifiable_type", "verifiable_id"], name: "index_verifications_on_verifiable_type_and_verifiable_id", using: :btree
