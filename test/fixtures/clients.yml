@@ -7,6 +7,6 @@
 one:
   id: 1
   user_id: 1
-  signature: 7a7ae245b876a9f00420946aee5b6caf6666ffbb5d1894e9dce5cfa772e2e00a7958049a6653aa207ae6ace9f646c96033b3cc20dc16e6b8cdd275310abdb19f
+  signature: "7a7ae245b876a9f00420946aee5b6caf6666ffbb5d1894e9dce5cfa772e2e00a7958049a6653aa207ae6ace9f646c96033b3cc20dc16e6b8cdd275310abdb19f"
   verified: false
   enabled: false
