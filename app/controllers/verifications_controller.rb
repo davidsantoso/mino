@@ -10,7 +10,10 @@ class VerificationsController < ApplicationController
   def index
     verification = Verification.includes(:verifiable).find_by_token(params[:token])
 
-    if verification && verification.verifiable.verify(params)
+    if verification && !verification.expired && verification.verifiable.verify(params)
+      verification.expired = true
+      verification.save
+
       render :index
     else
       head :forbidden

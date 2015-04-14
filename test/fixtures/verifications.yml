@@ -8,8 +8,10 @@ one:
   token: "DzHrKwgsbw8rIFLtJm25loEE-rY-4yPwxU0IkYbkcF4BIz1BGk50kW0afOx0g6sD0_HRLPJJqARlN4Tj-zU5Iw=="
   verifiable_id: 1
   verifiable_type: User
+  expired: false
 
 two:
   token: "gr4yamjzehNf_eKFt9YY0kucAH-XWaH-M0A9yR5mj6Z6cfrqmyvjfAj4Q5kbXoRAs7nUmeVoKXtpv65X9_CWKQ=="
   verifiable_id: 1
   verifiable_type: Client
+  expired: false
