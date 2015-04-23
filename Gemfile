@@ -21,6 +21,7 @@ end
 
 group :test do
   gem 'shoulda'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'minitest-reporters'
 end
 
