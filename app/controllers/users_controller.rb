@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @user.errors.any?
       render json: @encrypted_response.build(@user.errors), status: :conflict
     else
-      EmailVerification.new(@user)
+      EmailAddressVerification.new(@user)
       render json: @encrypted_response.build(@user), status: :created
     end
   end

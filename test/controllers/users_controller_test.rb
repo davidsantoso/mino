@@ -5,6 +5,8 @@ class UsersControllerTest < ActionController::TestCase
   setup do
     @request.headers["Accept"] = "application/json"
     @request.headers["Content-Type"] = "application/json"
+
+    ActionMailer::Base.deliveries = []
   end
 
   test "should return 400 because of bad decrypt" do
@@ -145,14 +147,21 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should send email address verification email" do
-    skip "Need to figure out how to best test an after_commit callback"
-    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      post :create, user: {email: "maggie.greene@mail.com", public_key: "htIBNjeNXgk", encrypted_private_key: "kmIIWHcsJQb==", nonce: "Hm27dm103ma", salt: "nI382bdkKd" }
+    assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+      post :create, {
+        data: "HevAPGg9ZitX+hgjqL21sDnBuv0A5tmV7N/9dA5Iffw8DuHEe/Hiwc6R0WgfSARtzhdMs3E8YZPA
+          f1u3bQ40S/Hy+iNNFDoUX88Z0Gu1lyKjLU/fubY1pRZe47RnDd17PaBG3UNolM/43aaF1uLuscSa
+          rfj3BNFVK6MQvwL5ya6kVIXWM9V/Y8r1IqFz6i22QGp5gChbEgAhFw8srDkIhVpXUYpmE1LI8l1P
+          L9n3doJQY1kXLoUNgRMNwC8TTQlo3Q9UybSyR2dr3MqO5fcg8ARCZnH7GFl4Afq0xu1rr7QkP6R5
+          vYC4yn70p4UbU294rvqEZyUevROeaJcLKihcsr0NsL0p4jidiOWMWhu9D7XUR3ojaufqbXx3+Yf3
+          Cerv+aK7ZbJuDV0xRs8ygAy925WVew==",
+        public_key: "GQ6rd6C1B0FXByHDhovXDRwei0PyJKRHfPoORyVtkTM=",
+        nonce: "/cO5Bn15NnIKmXjsQUHiYkukBN1Tz41X"
+      }
     end
     email_address_verification_email = ActionMailer::Base.deliveries.last
 
-    assert_enqueued_jobs(1)
     assert_equal "Verify your mino account", email_address_verification_email.subject
-    assert_equal 'maggie.greene@mail.com', email_address_verification_email.to[0]
+    assert_equal "maggie.greene@mail.com", email_address_verification_email.to[0]
   end
 end
