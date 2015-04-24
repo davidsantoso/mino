@@ -27,9 +27,9 @@ class UsersController < ApplicationController
   # there is the decrypt preprocess happening in application controller
   def user_create_params
     @request_params.require(:user).permit(:email,
-                                :public_key,
-                                :encrypted_private_key,
-                                :nonce,
-                                :salt)
+                                          :public_key,
+                                          :encrypted_private_key,
+                                          :nonce,
+                                          :salt)
   end
 end
