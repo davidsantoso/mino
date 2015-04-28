@@ -1,6 +1,6 @@
 class VerificationsController < ApplicationController
-  skip_before_filter :initialize_encrypted_response
-  skip_before_filter :decrypt_request_data
+  skip_before_action :initialize_encrypted_response
+  skip_before_action :decrypt_request_data
 
   # GET /verifications
   # Unfortunately this isn't very RESTful. At some point in the future

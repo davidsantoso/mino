@@ -4,8 +4,8 @@ class VerificationMailer < ApplicationMailer
     mail(to: email, subject: "Verify your mino account")
   end
 
-  def verify_client(email, client_signature, verification_token)
-    @verification_url = "http://#{ENV['HOST_NAME']}/verification?token=#{verification_token}&signature=#{client_signature}"
+  def verify_client(email, client_token, verification_token)
+    @verification_url = "http://#{ENV['HOST_NAME']}/verification?token=#{verification_token}&client_token=#{client_token}"
     mail(to: email, subject: "Verify your mino login attempt")
   end
 end

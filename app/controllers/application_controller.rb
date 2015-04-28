@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   # Decrypt the request body sent by clients and initialize a box to encrypt
   # the response to the client
-  before_filter :initialize_encrypted_response
-  before_filter :decrypt_request_data
+  before_action :initialize_encrypted_response
+  before_action :decrypt_request_data
 
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :null_session, if: :json_request?
