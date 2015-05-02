@@ -1,27 +1,11 @@
 class ApplicationController < ActionController::Base
   # Decrypt the request body sent by clients and initialize a box to encrypt
   # the response to the client
-  before_action :authenticate
   before_action :initialize_encrypted_response
   before_action :decrypt_request_data
 
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :null_session, if: :json_request?
-
-  def authenticate
-    authenticate_token || render_unauthorized
-  end
-
-  def authenticate_token
-    authenticate_with_http_token do |token, options|
-      Client.find_by(token: token)
-    end
-  end
-
-  def render_unauthorized
-    self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: 'Bad credentials', status: 401
-  end
 
   def initialize_encrypted_response
     begin
