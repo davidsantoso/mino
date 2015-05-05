@@ -5,6 +5,17 @@
 # below each fixture, per the syntax in the comments below
 #
 
+# Master Key: pAhLz7UY54SE0/8+fB3q9SU157CQsEb5pK6gaurd7tQ=
+# Private Key: 8PsOs15ToJ4wqQptSWbw9aMJhvOnVuZZc7Mqv+FJMqM=
+# Password: password
+zero:
+  email: hershel.greene@mail.com
+  verified: true
+  public_key: y/ZTKW2L5wRC/ZgwkMP3OM4J87/dd3snqXiqZu1U/Wk=
+  encrypted_private_key: UKugpjkeG+/o9KwWXGRNYxxIJ25ckc/em+RDJL4Nzg2JpvKZBpiwlCUipSW7s3OP
+  nonce: 8XtG0LF4Bp97LzgHU7Ju+VA+2RCWyUoz
+  salt: uOccKMqPcRtAqPFuiAMe5VYHyVh5xNyeFeBeecqldpE=
+
 one:
   id: 1
   email: rick.grimes@mail.com
