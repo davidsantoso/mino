@@ -38,14 +38,17 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_response :bad_request
   end
+
   # This is what the data attribute below should decrypt to
   # {
   #   data: {
-  #     email: "daryl.dixon@mail.com",
-  #     public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
-  #     encrypted_private_key: "yybVgE+zUyH6CkdnA8Jozbx13OsKmphyFlVTjxkSky7W2aYKx52RRXNs2PKOVztF"
-  #     nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv",
-  #     salt: "AEoZJXoc6g7Tw1b3p1QtaNMFlFqqh12sZdBFGjXKx7c="
+  #     user: {
+  #       email: "daryl.dixon@mail.com",
+  #       public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
+  #       encrypted_private_key: "yybVgE+zUyH6CkdnA8Jozbx13OsKmphyFlVTjxkSky7W2aYKx52RRXNs2PKOVztF"
+  #       nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv",
+  #       salt: "AEoZJXoc6g7Tw1b3p1QtaNMFlFqqh12sZdBFGjXKx7c="
+  #     }
   #   },
   #   public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
   #   nonce: "bb0U33NFHg4QqlwtLL9oQY365ajvL4bv"
