@@ -9,6 +9,7 @@
 # Private Key: 8PsOs15ToJ4wqQptSWbw9aMJhvOnVuZZc7Mqv+FJMqM=
 # Password: password
 zero:
+  id: 888
   email: hershel.greene@mail.com
   verified: true
   public_key: y/ZTKW2L5wRC/ZgwkMP3OM4J87/dd3snqXiqZu1U/Wk=
