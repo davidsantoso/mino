@@ -20,12 +20,13 @@ class SecretsControllerTest < ActionController::TestCase
   #   public_key: "Nak2khxef7Qn6HKemaj38T2/1x38AcIUAFPWLQtVby0=",
   #   nonce: "i+ZapKXfxmiHVnQAavSQf4GVKUvbxYep"
   # }
-  test "should create secret" do
+  test "should create a secret" do
     assert_difference('Secret.count') do
       post :create, {
-        data: "mUIYSGOdlpo7R783430sqpYDtHvRgzwVHyyIvX7AimHL80R0VfOqnbtXocaREE4NvMlrYi0Zac1J
-          gihl4Ez+A1aVCSWPy8v+jO2WKS6Gh5LNddRv5XEMQ2qQ6Tnylmy+idGTGlwZLIhyPUkBVFE4huny
-          12mfLXaQfhuQTrO+LEt+JpViGDa1t1qJJk3hBgKgDAsS7AP28yYIPAEdZhuq8F7WzqODCERcwDA=",
+        data: "mUIYSGOdlpo7R783430sqpYDtHvRgzwVHyyIvX7AimHL80R0VfOqnbtXocaREE4N
+          vMlrYi0Zac1Jgihl4Ez+A1aVCSWPy8v+jO2WKS6Gh5LNddRv5XEMQ2qQ6Tnylmy+idGTG
+          lwZLIhyPUkBVFE4huny12mfLXaQfhuQTrO+LEt+JpViGDa1t1qJJk3hBgKgDAsS7AP28y
+          YIPAEdZhuq8F7WzqODCERcwDA=",
         public_key: "y/ZTKW2L5wRC/ZgwkMP3OM4J87/dd3snqXiqZu1U/Wk=",
         nonce: "h9PYYS+rRxXMfRvQfgsoaWJtM++1LDbd"
       }
