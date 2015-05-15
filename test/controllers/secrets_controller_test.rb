@@ -6,6 +6,36 @@ class SecretsControllerTest < ActionController::TestCase
     @request.headers["Content-Type"] = "application/json"
   end
 
+  test "should return 400 because of bad decrypt" do
+    post :create, {
+      data: "incorrectly_encrypted_message",
+      public_key: "y/ZTKW2L5wRC/ZgwkMP3OM4J87/dd3snqXiqZu1U/Wk=",
+      nonce: "Pc0zdJN4H24dc6wtaLdoEY38YajRL4xv"
+    }
+
+    assert_response :bad_request
+  end
+
+  test "should return 400 because blank public key" do
+    post :create, {
+      data: "some_encrypted_message",
+      public_key: "",
+      nonce: "yc0zdMN4x242c6DtadCoEd3WQa1R14xC"
+    }
+
+    assert_response :bad_request
+  end
+
+  test "should return 400 because of blank nonce" do
+    post :create, {
+      data: "some_encrypted_message",
+      public_key: "y/ZTKW2L5wRC/ZgwkMP3OM4J87/dd3snqXiqZu1U/Wk=",
+      nonce: ""
+    }
+
+    assert_response :bad_request
+  end
+
   # This is what the data attribute below should decrypt to
   # {
   #   data: {
