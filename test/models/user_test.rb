@@ -11,12 +11,14 @@ class UserTest < ActiveSupport::TestCase
   should validate_uniqueness_of :public_key
   should validate_uniqueness_of :encrypted_private_key
 
-  test "should send email address verification email" do
-    skip "Unit test that a mailer is being properly enqueued"
-    user = users(:two)
-
-    assert_enqueued_with(job: SendEmailAddressVerificationTokenJob) do
-      user.send_email_address_verification_token
-    end
-  end
+  # Not really sure if this needs to be tested on the unit level. Probably
+  # more helpful if it was tested it within an integration test instead
+  #
+  # test "should send email address verification email" do
+  #   user = users(:two)
+  #
+  #   assert_enqueued_with(job: SendEmailAddressVerificationTokenJob) do
+  #     user.send_email_address_verification_token
+  #   end
+  # end
 end
